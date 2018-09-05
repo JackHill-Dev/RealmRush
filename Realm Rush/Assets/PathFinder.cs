@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
+    [SerializeField] Waypoint startWatpoint, endWayPoint;
 
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
 
@@ -12,7 +13,14 @@ public class PathFinder : MonoBehaviour
 	void Start ()
     {
         LoadBlocks();
+        ColorStartAndEnd();
 	}
+
+    private void ColorStartAndEnd()
+    {
+        startWatpoint.SetTopColor(Color.green);
+        endWayPoint.SetTopColor(Color.red);
+    }
 
     private void LoadBlocks()
     {
@@ -27,9 +35,10 @@ public class PathFinder : MonoBehaviour
             else
             {
                 grid.Add(waypoint.GetGridPos(), waypoint);
+                //waypoint.SetTopColor(Color.black);
             }
         }
-        print("Loaded " + grid.Count + " Blocks");
+        //print("Loaded " + grid.Count + " Blocks");
     }
 
     // Update is called once per frame
